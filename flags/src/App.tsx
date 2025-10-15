@@ -1,23 +1,27 @@
-
+import { useState } from "react"
 import './App.css'
 import Filter from './components/Filter.tsx'
 import Search from './components/Search'
 import Header from './components/Header'
 import FlagList from './components/FlagList'
 
+
 function App() {
+  const [lightmode, setLightMode] = useState(true)
+  const [search, setSearch] = useState("")
+   const [region, setRegion] = useState("")
   
 
   return (
     <>  
-    <h1>Hello</h1>
+    
     <Header />
     <main>
       <div>
-        <Search />
-        <Filter />
+        <Search search = {search} setSearch={setSearch} />
+        <Filter region = {search} setSearch={setRegion} />
       </div>
-      <FlagList />
+      <FlagList search = {search} />
     </main>
      
     </>
