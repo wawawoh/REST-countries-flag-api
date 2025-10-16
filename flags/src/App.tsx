@@ -19,9 +19,9 @@ function App() {
     <main>
       <div>
         <Search search = {search} setSearch={setSearch} />
-        <Filter region = {search} setSearch={setRegion} />
+        <Filter region = {search} setRegion={setRegion} />
       </div>
-      <FlagList search = {search} />
+      <FlagList search = {search} region = {region} />
     </main>
      
     </>

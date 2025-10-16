@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import Flag from "./Flag"
 
 interface Props {
-    search:string
+    search:string,
+    region:string
 }
-export default function FlagList ({search}:Props) {
+export default function FlagList ({search,region}:Props) {
 const [isLoaded, setIsLoaded] = useState(false)
 const [data, setData] = useState<Country[]>()
 interface Country {
@@ -20,18 +21,16 @@ interface Country {
     }
     capital:string
 }
-const generateList = (input:string) => {
-    
-    return(
-        data?.map ((item) => {
-            return <li id={item.name.common} key={item.name.common} className={item.name.common.toLowerCase().startsWith(input.toLowerCase()) ? "visible" : "hidden"}>
-                <Flag  name={item.name.common} population = {item.population} region={item.region} flag={item.flags.svg} alt={item.flags.alt} capital= {item.capital}/>
-                </li>
-           })
 
-    ) 
-
-}
+const filteredCountries = useMemo(()=> {
+    const filtered = data?.filter((item)=> {
+        const nameMatches = !search || item.name.common.toLowerCase().startsWith (search.trim().toLowerCase())
+        const regionMatches = !region || item.region.toLowerCase() == region.toLowerCase()
+        return nameMatches && regionMatches
+    })
+    return filtered
+},[search,data,region])
+// only rerenders when the two dependencies changew
 
 useEffect(()=> {
     const fetchCountries = async () => {
@@ -60,7 +59,13 @@ useEffect(()=> {
          <section>
            <p> {isLoaded ? "loaded" : "loading"}</p>
            
-           {generateList(search)}
+           {filteredCountries?.map ((item) => {
+            return <li id={item.name.common} key={item.name.common} >
+                <Flag  name={item.name.common} population = {item.population} region={item.region} flag={item.flags.svg} alt={item.flags.alt} capital= {item.capital}/>
+                </li>
+           })}
+
+    )
            {/* eveery time the state is changed, the whole program runs again aside from the inital useffect of course */}
            
 

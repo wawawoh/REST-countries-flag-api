@@ -1,9 +1,14 @@
-export default function Filter () {
+
+interface Props {
+    region:string
+    setRegion:React.Dispatch<React.SetStateAction<string>>
+}
+export default function Filter ({region, setRegion}: Props) {
     return (
            <div>
         <h1>This is the filter</h1>
         <label htmlFor="regionSelect">Select a region</label>
-        <select name="regionSelect" id="regionSelect">
+        <select onChange={(e)=> setRegion(e.target.value)} name="regionSelect" id="regionSelect">
             
             <option value="Africa">Africa</option>
             <option value="Asia">Asia</option>
