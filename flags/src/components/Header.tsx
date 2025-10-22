@@ -1,15 +1,23 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import "../App.css"
 
 
 export default function Header () {
-    // When lcicked the usestate switches 
+    const [isLight, setIsLight] = useState(true)
     
+    useEffect (()=> {
+        if (isLight) {
+            console.log("lightmode")
+        } else {
+            console.log("dark mode")
+        }
+    },[isLight])
     return (
-         <header>
+         <header className="flex px-4 py-4 justify-between text-2xl font-[600]">
         <h1>Where in the world?</h1>
-        <button>
-            <img src="" alt="" />
-            <p>Light Mode</p>
+        <button onClick={()=> setIsLight((prev)=> !prev)}>
+           
+            <p >{isLight ? "☼ Light Mode" : " ☾ Dark Mode" } </p>
         </button>
     </header>
 

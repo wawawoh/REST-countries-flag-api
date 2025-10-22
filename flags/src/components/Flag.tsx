@@ -9,12 +9,16 @@ interface Props {
 
 export default function Flag ({name, population, region, flag,alt,capital}:Props) {
     return (
- <div>
-        <img src={flag} alt={alt} />
-        <h3>{name}</h3>
+ <div className="  bg-white" >
+        <img src={flag} alt={alt} className="" />
+        <div className="flex-col flex py-8 px-8" >
+             <h3 className="pb-4 text-2xl">{name}</h3>
         <p>Population:{population} </p>
         <p>Region: {region}</p>
         <p>Capital: {capital}</p>
+
+        </div>
+       
     </div>
     )
    

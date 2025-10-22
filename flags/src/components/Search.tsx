@@ -17,7 +17,7 @@ export default function Search ({search, setSearch}:Props ) {
     return (
 
         <form action="">
-            <input type="text" placeholder="Search for a country" value={search} onChange={handleChange} />
+            <input className="px-4 py-2 bg-white w-full rounded-[0.5rem]" type="text" placeholder="Search for a country" value={search} onChange={handleChange} />
             <label htmlFor=""></label>
         </form>
     )

@@ -1,11 +1,12 @@
-import { useEffect, useMemo, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import Flag from "./Flag"
 
 interface Props {
     search:string,
-    region:string
+    region:string,
+    setDisplayInfo: React.Dispatch<React.SetStateAction<string>>
 }
-export default function FlagList ({search,region}:Props) {
+export default function FlagList ({search,region,setDisplayInfo}:Props) {
 const [isLoaded, setIsLoaded] = useState(false)
 const [data, setData] = useState<Country[]>()
 interface Country {
@@ -58,12 +59,15 @@ useEffect(()=> {
     return (
          <section>
            <p> {isLoaded ? "loaded" : "loading"}</p>
-           
-           {filteredCountries?.map ((item) => {
-            return <li id={item.name.common} key={item.name.common} >
+           <ul className="list-none flex flex-col gap-8">
+             {filteredCountries?.map ((item) => {
+            return <li id={item.name.common} key={item.name.common} onClick={()=> setDisplayInfo(item.name.common)} >
                 <Flag  name={item.name.common} population = {item.population} region={item.region} flag={item.flags.svg} alt={item.flags.alt} capital= {item.capital}/>
                 </li>
            })}
+            
+           </ul>
+          
 
     )
            {/* eveery time the state is changed, the whole program runs again aside from the inital useffect of course */}

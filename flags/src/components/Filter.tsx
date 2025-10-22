@@ -6,7 +6,7 @@ interface Props {
 export default function Filter ({region, setRegion}: Props) {
     return (
            <div>
-        <h1>This is the filter</h1>
+        
         <label htmlFor="regionSelect">Select a region</label>
         <select onChange={(e)=> setRegion(e.target.value)} name="regionSelect" id="regionSelect">
             

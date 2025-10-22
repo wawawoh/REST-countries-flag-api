@@ -10,18 +10,28 @@ function App() {
   const [lightmode, setLightMode] = useState(true)
   const [search, setSearch] = useState("")
    const [region, setRegion] = useState("")
+   const [displayInfo, setDisplayInfo] = useState("")
   
 
   return (
     <>  
     
     <Header />
-    <main>
-      <div>
+    <main className="bg-green-100 px-4 m-auto">
+      <div className="flex flex-col ">
         <Search search = {search} setSearch={setSearch} />
         <Filter region = {search} setRegion={setRegion} />
       </div>
-      <FlagList search = {search} region = {region} />
+      
+      {/* hide or show the flags based off clicking  */}
+      {displayInfo && <div>
+        <p>{displayInfo}</p>
+      </div>}
+
+      <div id="flag" className={displayInfo !=="" ? "hidden" :  "visible"}>
+    <FlagList search = {search} region = {region} setDisplayInfo = {setDisplayInfo} />
+      </div>
+      
     </main>
      
     </>
