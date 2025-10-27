@@ -1,27 +1,18 @@
 import React, { useEffect, useMemo, useState } from "react"
+import type { Country } from "../App"
 import Flag from "./Flag"
 
 interface Props {
     search:string,
     region:string,
-    setDisplayInfo: React.Dispatch<React.SetStateAction<string>>
+    setDisplayInfo: React.Dispatch<React.SetStateAction<string>>,
+    data: Country[],
+    setData: React.Dispatch<React.SetStateAction<Country[]>>
+    // FIX THESE 2 LATER
 }
-export default function FlagList ({search,region,setDisplayInfo}:Props) {
+export default function FlagList ({search,region,setDisplayInfo,data,setData}:Props) {
 const [isLoaded, setIsLoaded] = useState(false)
-const [data, setData] = useState<Country[]>()
-interface Country {
-    name:{
-        common:string
-    },
-    population:number,
-    region:string,
-    flags: {
-        png: string, 
-        svg: string,
-        alt:string
-    }
-    capital:string
-}
+
 
 const filteredCountries = useMemo(()=> {
     const filtered = data?.filter((item)=> {
@@ -36,12 +27,12 @@ const filteredCountries = useMemo(()=> {
 useEffect(()=> {
     const fetchCountries = async () => {
         try {
-            const res = await fetch("https://restcountries.com/v3.1/all?fields=name,population,region,flags,capital")
+            const res = await fetch("https://restcountries.com/v3.1/all?fields=name,population,region,flags,capital,tld,currencies,subregion,languages,borders")
             if (!res.ok ) {
                 throw new Error ("failed to fetch data")
             } else {
                 const newData = await res.json()
-                
+                console.log(newData)
                 setIsLoaded(true)
                 setData(newData)
 
