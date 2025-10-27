@@ -41,7 +41,7 @@ useEffect(()=> {
                 throw new Error ("failed to fetch data")
             } else {
                 const newData = await res.json()
-                console.log(newData)
+                
                 setIsLoaded(true)
                 setData(newData)
 

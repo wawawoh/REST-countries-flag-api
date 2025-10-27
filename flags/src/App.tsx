@@ -4,6 +4,7 @@ import Filter from './components/Filter.tsx'
 import Search from './components/Search'
 import Header from './components/Header'
 import FlagList from './components/FlagList'
+import DisplayFlag from './components/DisplayFlag'
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
       
       {/* hide or show the flags based off clicking  */}
       {displayInfo && <div>
-        <p>{displayInfo}</p>
+        <DisplayFlag displayInfo = {displayInfo} setDisplayInfo={setDisplayInfo} />
       </div>}
 
       <div id="flag" className={displayInfo !=="" ? "hidden" :  "visible"}>
