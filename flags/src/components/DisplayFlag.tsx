@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import type { Country } from "../App"
+import type { Country } from "../types/Country"
+
 interface props {
     displayInfo: string,
    
@@ -9,12 +10,23 @@ interface props {
 }
 
 export default function Flag ({displayInfo, setDisplayInfo, data, setData}:props) {
+    const [nativeName, setNativeName] = useState("")
     
-    const currentCountry  = data.find((country)=> {
+     const currentCountry  = data.find((country)=> {
 
         return country.name.common === displayInfo
     })
-    console.log(currentCountry)
+    
+    
+    
+    useEffect (()=> {
+       
+            console.log(currentCountry)
+            const tempName = Object.keys(currentCountry?.name.nativeName)
+            console.log(Object.values(currentCountry.languages))
+            setNativeName((currentCountry?.name.nativeName[tempName[0]].official))
+
+    },[displayInfo])
 
     
    
@@ -30,12 +42,14 @@ export default function Flag ({displayInfo, setDisplayInfo, data, setData}:props
                  <div id="country-details">
                          <h2>{displayInfo}</h2>
                         <div>
-                            {/* <p><span>Native Name: </span>{data[0].name.nativeName.lit.offical}</p> */}
-                            <p><span>Population: </span>{currentCountry?.population.toLocaleString()}</p>
+                            <p><span>Native Name: </span>{nativeName}</p>
+                            <p><span>Population: </span>{currentCountry?.population}</p>
     <p><span>Region: </span>{currentCountry?.region}</p>
     <p><span>Sub Region: </span>{currentCountry?.subregion}</p>
     <p><span>Capital: </span>{currentCountry?.capital}</p>
     <p><span>Top Level Domain: </span>{currentCountry?.tld}</p>
+    <p><span>Currencies: {Object.keys(currentCountry?.currencies)}</span></p>
+    <p>Languages: {Object.values(currentCountry?.languages).map((language,placement)=> placement === Object.values(currentCountry.languages).length - 1 ? `${language}` : `${language}, `) }</p>
                             
                             
                     </div> 

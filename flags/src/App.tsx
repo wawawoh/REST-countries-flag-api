@@ -6,20 +6,7 @@ import Header from './components/Header'
 import FlagList from './components/FlagList'
 import DisplayFlag from './components/DisplayFlag'
 
- export interface Country {
-       name:{
-           common:string
-       },
-       population:number,
-       region:string,
-       flags: {
-           png: string, 
-           svg: string,
-           alt:string
-       }
-       capital:string
-   }
-  
+
 
 
 function App() {
