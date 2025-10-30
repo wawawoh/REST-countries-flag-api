@@ -1,22 +1,17 @@
 import { useEffect, useState } from "react"
 import type { Country } from "../types/Country"
+import { Link } from "react-router-dom"
 
 interface props {
-    displayInfo: string,
-   
-    setDisplayInfo:React.Dispatch<React.SetStateAction<string>>
-      data: Country[],
-        setData: React.Dispatch<React.SetStateAction<Country[]>>
+ 
+      currentCountry: Country[],
+      id:string
+       
 }
 
-export default function Flag ({displayInfo, setDisplayInfo, data, setData}:props) {
+export default function Flag ({currentCountry,id}:props) {
     const [nativeName, setNativeName] = useState("")
-    
-     const currentCountry  = data.find((country)=> {
-
-        return country.name.common === displayInfo
-    })
-    
+    // https://restcountries.com/v3.1/name/greece
     
     
     useEffect (()=> {
@@ -26,21 +21,27 @@ export default function Flag ({displayInfo, setDisplayInfo, data, setData}:props
             console.log(Object.values(currentCountry.languages))
             setNativeName((currentCountry?.name.nativeName[tempName[0]].official))
 
-    },[displayInfo])
+    },[])
 
     
-   
- return(
-    <div>
+   if (!currentCountry) {
+  return <div>Loading...</div>;
+}
+ return (
+    
+        
+<div>
 
-   
-        <button onClick={()=> setDisplayInfo("")}>Back</button>
+        <Link to={"/"}>
+         <button>Back</button>
+        </Link>
+       
             <div id="country-info">
                 <div id="flag">
                      <img src={currentCountry?.flags.svg} alt={currentCountry?.flags.alt} />
                 </div>
                  <div id="country-details">
-                         <h2>{displayInfo}</h2>
+                         <h2>{id}</h2>
                         <div>
                             <p><span>Native Name: </span>{nativeName}</p>
                             <p><span>Population: </span>{currentCountry?.population}</p>
@@ -61,5 +62,10 @@ export default function Flag ({displayInfo, setDisplayInfo, data, setData}:props
                 
             </div>
      </div>
- )
+
+        )
+        
+    
+    
+ 
 }

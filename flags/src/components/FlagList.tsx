@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react"
-import type { Country } from "../App"
+import type { Country } from "../types/Country"
 import Flag from "./Flag"
+import { Link } from "react-router-dom"
 
 interface Props {
     search:string,
@@ -52,9 +53,17 @@ useEffect(()=> {
            <p> {isLoaded ? "loaded" : "loading"}</p>
            <ul className="list-none flex flex-col gap-8">
              {filteredCountries?.map ((item) => {
-            return <li id={item.name.common} key={item.name.common} onClick={()=> setDisplayInfo(item.name.common)} >
+            return (
+                <Link to={`/FlagApp/${item.name.common}`}>
+             <li id={item.name.common} key={item.name.common}  >
                 <Flag  name={item.name.common} population = {item.population} region={item.region} flag={item.flags.svg} alt={item.flags.alt} capital= {item.capital}/>
                 </li>
+            </Link>
+
+            )
+            
+
+
            })}
             
            </ul>

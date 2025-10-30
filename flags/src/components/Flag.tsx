@@ -4,7 +4,7 @@ interface Props {
     region:string,
     flag:string,
     alt:string,
-    capital:string
+    capital:string[]
 }
 
 export default function Flag ({name, population, region, flag,alt,capital}:Props) {
