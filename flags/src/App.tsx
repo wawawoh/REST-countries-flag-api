@@ -22,18 +22,14 @@ function App() {
     <>  
     
     <Header />
-    <main className="bg-green-100 px-4 m-auto">
-      <div className="flex flex-col ">
+    <main className="bg-green-100 p-4 ">
+      <div className="flex flex-col gap-10 pb-2 ">
         <Search search = {search} setSearch={setSearch} />
         <Filter region = {region} setRegion={setRegion} />
       </div>
       
-      {/* hide or show the flags based off clicking  */}
-      {displayInfo && <div>
-        <DisplayFlag displayInfo = {displayInfo} setDisplayInfo={setDisplayInfo} data={data} setData={setData} />
-      </div>}
-
-      <div id="flag" className={displayInfo !=="" ? "hidden" :  "visible"}>
+      
+      <div id="flag" className="">
     <FlagList search = {search} region = {region} setDisplayInfo = {setDisplayInfo} data={data} setData={setData} />
       </div>
       

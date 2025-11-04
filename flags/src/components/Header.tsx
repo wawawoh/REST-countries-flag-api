@@ -13,8 +13,8 @@ export default function Header () {
         }
     },[isLight])
     return (
-         <header className="flex px-4 py-4 justify-between text-2xl font-[600]">
-        <h1>Where in the world?</h1>
+         <header className="flex px-4 py-4 justify-between   font-[600]">
+        <h1 className="font-bold">Where in the world?</h1>
         <button onClick={()=> setIsLight((prev)=> !prev)}>
            
             <p >{isLight ? "☼ Light Mode" : " ☾ Dark Mode" } </p>
