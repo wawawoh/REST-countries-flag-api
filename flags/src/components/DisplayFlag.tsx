@@ -9,7 +9,7 @@ interface props {
        
 }
 
-export default function Flag ({currentCountry,id}:props) {
+export default function Flag ({currentCountry,id, borderCountries}:props) {
     const [nativeName, setNativeName] = useState("")
     // https://restcountries.com/v3.1/name/greece
     
@@ -56,7 +56,19 @@ export default function Flag ({currentCountry,id}:props) {
                     </div> 
                     
                     <div id="country-borders">
-                             borderuing countries go here 
+                        <ul>
+
+                        
+                            {borderCountries.map((country) => {
+                                return (
+                                    <Link to={`/flagapp/${country}`}>
+                                    
+                                    <li Key={country}>{country}</li>
+                                    </Link>
+                                    
+                                )
+                            })}
+                            </ul>
                     </div>
                 </div>
                 

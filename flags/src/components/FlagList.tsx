@@ -3,6 +3,7 @@ import type { Country } from "../types/Country"
 import Flag from "./Flag"
 import { Link } from "react-router-dom"
 
+
 interface Props {
     search:string,
     region:string,
