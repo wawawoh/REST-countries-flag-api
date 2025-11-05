@@ -26,15 +26,19 @@ const filteredCountries = useMemo(()=> {
 },[search,data,region])
 // only rerenders when the two dependencies changew
 
+useEffect (()=> {
+    console.log(data)
+},[data])
+
 useEffect(()=> {
     const fetchCountries = async () => {
         try {
-            const res = await fetch("https://restcountries.com/v3.1/all?fields=name,population,region,flags,capital,tld,currencies,subregion,languages,borders")
+            const res = await fetch("https://restcountries.com/v3.1/all?fields=name,population,region,flags,capital,cca3")
             if (!res.ok ) {
                 throw new Error ("failed to fetch data")
             } else {
                 const newData = await res.json()
-                console.log(newData)
+                
                 setIsLoaded(true)
                 setData(newData)
 
@@ -55,7 +59,7 @@ useEffect(()=> {
            <ul className="list-none flex flex-col gap-8">
              {filteredCountries?.map ((item) => {
             return (
-                <Link to={`/FlagApp/${item.name.common}`}>
+                <Link to={`/FlagApp/${item.cca3}`}>
              <li id={item.name.common} key={item.name.common}  >
                 <Flag  name={item.name.common} population = {item.population} region={item.region} flag={item.flags.svg} alt={item.flags.alt} capital= {item.capital}/>
                 </li>

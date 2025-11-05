@@ -41,16 +41,18 @@ export default function Flag ({currentCountry,id, borderCountries}:props) {
                      <img src={currentCountry?.flags.svg} alt={currentCountry?.flags.alt} />
                 </div>
                  <div id="country-details">
-                         <h2>{id}</h2>
+                        <h2>{currentCountry.name.common}</h2>
                         <div>
-                            <p><span>Native Name: </span>{nativeName}</p>
-                            <p><span>Population: </span>{currentCountry?.population}</p>
-    <p><span>Region: </span>{currentCountry?.region}</p>
-    <p><span>Sub Region: </span>{currentCountry?.subregion}</p>
-    <p><span>Capital: </span>{currentCountry?.capital}</p>
-    <p><span>Top Level Domain: </span>{currentCountry?.tld}</p>
-    <p><span>Currencies: {Object.keys(currentCountry?.currencies)}</span></p>
-    <p>Languages: {Object.values(currentCountry?.languages).map((language,placement)=> placement === Object.values(currentCountry.languages).length - 1 ? `${language}` : `${language}, `) }</p>
+                                    <p><span>Native Name: </span>{nativeName}</p>
+                                    <p><span>Population: </span>{currentCountry?.population.toLocaleString()}</p>
+                                    <p><span>Region: </span>{currentCountry?.region}</p>
+                                    <p><span>Sub Region: </span>{currentCountry?.subregion}</p>
+                                    <p><span>Capital: </span>{currentCountry?.capital}</p>
+                        </div>
+                        <div>
+                <p><span>Top Level Domain: </span>{currentCountry?.tld}</p>
+                <p><span>Currencies: {Object.keys(currentCountry?.currencies)}</span></p>
+                <p>Languages: {Object.values(currentCountry?.languages).map((language,placement)=> placement === Object.values(currentCountry.languages).length - 1 ? `${language}` : `${language}, `) }</p>
                             
                             
                     </div> 
@@ -59,11 +61,15 @@ export default function Flag ({currentCountry,id, borderCountries}:props) {
                         <ul>
 
                         
-                            {borderCountries.map((country) => {
+                            {Array.from(borderCountries.keys()).map((countryCode) => {
+                                console.log("the new Country Ccode", countryCode)
+                                console.log("heyyyyyyy")
                                 return (
-                                    <Link to={`/flagapp/${country}`}>
+                                    <Link to={`/flagapp/${countryCode}`}>
                                     
-                                    <li Key={country}>{country}</li>
+                                    <li key={countryCode}>
+                                        {borderCountries.get(countryCode)}
+                                        </li>
                                     </Link>
                                     
                                 )

@@ -8,7 +8,7 @@ export default function FlagApp () {
     const {id} = useParams()
     const [currentCountry, setCurrentCountry] =  useState<Country[]>([])
     const [isLoaded, setIsLoaded] = useState(false)
-    const [borderCountries,setBorderCountries] = useState<string[]>([])
+    const [borderCountries,setBorderCountries] = useState (new Map())
 
     // fetches the data from the api
     useEffect (()=> {
@@ -18,11 +18,10 @@ export default function FlagApp () {
                 const fetchCountryInfo = async() => {
                     try {
                         
-                        console.log(`https://restcountries.com/v3.1/name/${id}`)
-                        // fix spacing issue
-                        const tempString = id
-                        const result = tempString?.trim()?.replaceAll(" ", "%20")
-                        const tempData = await fetch (`https://restcountries.com/v3.1/name/${result}`)
+                        console.log(`https://restcountries.com/v3.1/alpha/${id}`)
+                        
+                       
+                        const tempData = await fetch (`https://restcountries.com/v3.1/alpha/${id}`)
                         if (!tempData.ok) {
                             throw new Error("bad fetch")
                         } else {
@@ -48,40 +47,39 @@ export default function FlagApp () {
 
     //  FETCHES BORDER COUNTRIES
     useEffect(()=> {
-        console.log(currentCountry, "the RERNT CURRENT CUREBRBHJB")
-        const fetchBorderInfo = async(code:string) => {
-             
-            try{
-                const temp = await fetch(`https://restcountries.com/v3.1/alpha/${code}?fields=name`)
-                if (!temp.ok) {
-                    throw new Error ("fethcing courntu error")
+        if (!currentCountry || !currentCountry.borders) return; // 🧱 guard clause
+        const tempMap = new Map ()
+        console.log(currentCountry.borders)
+        const fetchBorderInfo = async (code:string)=> {
+            try {
+                const res = await fetch(`https://restcountries.com/v3.1/alpha/${code}?&fields=name`)
+                if (!res.ok) {
+                    console.error ("border country faileure")
                 } else {
-                    const borderName = await temp.json()
-                    console.log("this is a broder",currentCountry.name.common )
-                    console.log("this si current country" , borderName.name.common  )
-                    if (borderName.name.common !== currentCountry.name.common) {
-
-                            setBorderCountries((prev)=>  [...prev,  borderName.name.common])
-                    }
-                
+                    const newData = await res.json()
+                    console.log("this is a border country", newData)
+                    setBorderCountries((prev)=> {
+                        const newMap = new Map(prev)
+                        newMap.set(code, newData.name.common)
+                        return newMap
+                    })
                 }
-
-            } catch (error){
+            }
+            catch(error) {
                 console.error(error)
 
             }
 
         }
-        // Fetches brodering countries
-        
-       if (currentCountry.borders) {
-        currentCountry.borders.forEach(element => {
-            fetchBorderInfo(element)
-
+        currentCountry.borders.forEach((border)=> {
+           fetchBorderInfo(border)
+           
             
         });
-
-       } 
+       
+        // define new map
+        // take the borders and for each border 
+        //  fetch the relevant information and update the map
     },[currentCountry])
 
     return (
