@@ -1,4 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+
+
 
 interface Props {
     region:string
@@ -7,22 +9,30 @@ interface Props {
 export default function Filter ({region, setRegion}: Props) {
     const regionArray = ["Africa", "Americas", "Asia", "Europe","Oceania"]
     const [showingRegion, setShowingRegion]= useState(false)
+    const [clickedIcon, setClickedIcon] = useState("V")
+
+    useEffect (()=> {
+        setClickedIcon(()=> region ? "X" : "V")
+    },[region])
 
     const regionClicked = (item:string) => {
       
         
-        setRegion(item ==="X" ? "" : item)
+        setRegion(item =="X" || item == "V" ? "" : item)
 
-            setShowingRegion(false)
+        setShowingRegion(false)
         
     }
 
     return (
-        <>
+        <div className="relative">
 
        
-        <button onClick={()=> setShowingRegion((prev)=> region ? prev : !prev)} className="bg-light-mode-background self-start p-4 ">
-            {region ? <>{region} <span className="border-gray-600 border-2 p-2" onClick={()=> regionClicked("X")}>X</span> </>: "Filter by Region"}
+
+       
+        <button onClick={()=> setShowingRegion((prev)=> region ? prev : !prev)} className="bg-light-mode-background self-start p-4 flex justify-between gap-10">
+            {region ? <>{region}  </>: "Filter by Region"}
+            <span className="border-gray-200 border-2 px-2 rounded-sm" onClick={()=> regionClicked(clickedIcon)}>{clickedIcon}</span>
 
         </button>
         {showingRegion &&  <div>
@@ -34,8 +44,7 @@ export default function Filter ({region, setRegion}: Props) {
 
         
            
-     </>
-
+      </div>
     )
  
 }

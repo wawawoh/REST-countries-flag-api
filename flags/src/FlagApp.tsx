@@ -6,7 +6,7 @@ import DisplayFlag from './components/DisplayFlag'
 
 export default function FlagApp () {
     const {id} = useParams()
-    const [currentCountry, setCurrentCountry] =  useState<Country[]>([])
+    const [currentCountry, setCurrentCountry] =  useState<Country>()
     const [isLoaded, setIsLoaded] = useState(false)
     const [borderCountries,setBorderCountries] = useState (new Map())
 
@@ -14,7 +14,7 @@ export default function FlagApp () {
     useEffect (()=> {
 
                 // fetches countryinfomration
-                setBorderCountries([])
+                setBorderCountries(new Map())
                 const fetchCountryInfo = async() => {
                     try {
                         
@@ -48,7 +48,7 @@ export default function FlagApp () {
     //  FETCHES BORDER COUNTRIES
     useEffect(()=> {
         if (!currentCountry || !currentCountry.borders) return; // 🧱 guard clause
-        const tempMap = new Map ()
+        
         console.log(currentCountry.borders)
         const fetchBorderInfo = async (code:string)=> {
             try {
@@ -85,7 +85,7 @@ export default function FlagApp () {
     return (
         <>
              <h1>This is a flag app {id} </h1>
-             {!isLoaded  ?<div>now loading</div> : <DisplayFlag currentCountry= {currentCountry} id={id} borderCountries={borderCountries} />}
+             {!isLoaded  ?<div>now loading</div> : <DisplayFlag currentCountry= {currentCountry} borderCountries={borderCountries} />}
         
         
 

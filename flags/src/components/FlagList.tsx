@@ -7,12 +7,12 @@ import { Link } from "react-router-dom"
 interface Props {
     search:string,
     region:string,
-    setDisplayInfo: React.Dispatch<React.SetStateAction<string>>,
+    
     data: Country[],
     setData: React.Dispatch<React.SetStateAction<Country[]>>
     // FIX THESE 2 LATER
 }
-export default function FlagList ({search,region,setDisplayInfo,data,setData}:Props) {
+export default function FlagList ({search,region,data,setData}:Props) {
 const [isLoaded, setIsLoaded] = useState(false)
 
 
@@ -56,7 +56,7 @@ useEffect(()=> {
     return (
          <section>
            <p> {isLoaded ? "loaded" : "loading"}</p>
-           <ul className="list-none flex flex-col gap-8">
+           <ul className="list-none flex flex-col gap-8 items-center px-8 md:grid md:grid-cols-3 ">
              {filteredCountries?.map ((item) => {
             return (
                 <Link to={`/FlagApp/${item.cca3}`}>

@@ -1,15 +1,16 @@
 
     export interface Country {
-  flags: Flags
-  name: Name
-  tld: string[]
-  currencies: Currencies
-  capital: string[]
-  region: string
-  subregion: string
-  languages: Languages
-  borders: string[]
-  population: number
+  flags: Flags,
+  name: Name,
+  tld: string[],
+  currencies: Currencies,
+  capital: string[],
+  region: string,
+  subregion: string,
+  languages: Languages,
+  borders: string[],
+  population: number,
+  cca3:string
 }
 
 export interface Flags {
