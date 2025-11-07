@@ -10,7 +10,7 @@ import DisplayFlag from './components/DisplayFlag'
 
 
 function App() {
-  const [lightmode, setLightMode] = useState(true)
+  
   const [search, setSearch] = useState("")
    const [region, setRegion] = useState("")
    const [displayInfo, setDisplayInfo] = useState("")
@@ -19,10 +19,9 @@ function App() {
   
 
   return (
-    <>  
     
-    <Header />
-    <main className="bg-green-100 p-4 ">
+    
+    <main className="bg-light-mode-background p-4 dark:bg-dark-mode-background">
       <div className="flex flex-col gap-10 pb-2 ">
         <Search search = {search} setSearch={setSearch} />
         <Filter region = {region} setRegion={setRegion} />
@@ -34,8 +33,9 @@ function App() {
       </div>
       
     </main>
+    
      
-    </>
+    
   )
 }
 

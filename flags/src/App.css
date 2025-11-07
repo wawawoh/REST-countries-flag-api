@@ -20,3 +20,26 @@
     font-family: "Nunito Sans";
     
 }
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+/* @media (prefers-color-scheme: dark)  {
+  * {
+    color:hsl(0, 0%, 76%) ;
+
+  }
+  
+} */
+#entire-css {
+  min-height: 100vh;
+  color: black;
+  background-color: white;
+}
+#entire-css.dark {
+   min-height: 100vh;
+  color: blanchedalmond;
+  background-color:hsl(207, 26%, 17%) ;
+
+}
+
+

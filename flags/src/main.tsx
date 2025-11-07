@@ -5,6 +5,9 @@ import App from './App.tsx'
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import FlagApp from "./FlagApp.tsx"
 import NotFound from "./NotFound.tsx"
+import Main from './components/Main.tsx'
+
+
 
 const router = createBrowserRouter([
   {path: "/", element: <App />},
@@ -13,9 +16,13 @@ const router = createBrowserRouter([
 ])
 
 
+
+
+
 createRoot(document.getElementById('root')!).render(
+  
   <StrictMode>
-    <RouterProvider router={router} />
+   <Main router={router} />
     
   </StrictMode>,
 )

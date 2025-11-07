@@ -4,6 +4,7 @@ import { useParams  } from "react-router-dom"
 import type { Country } from "./types/Country"
 import DisplayFlag from './components/DisplayFlag'
 
+
 export default function FlagApp () {
     const {id} = useParams()
     const [currentCountry, setCurrentCountry] =  useState<Country>()
@@ -47,7 +48,7 @@ export default function FlagApp () {
 
     //  FETCHES BORDER COUNTRIES
     useEffect(()=> {
-        if (!currentCountry || !currentCountry.borders) return; // 🧱 guard clause
+        if (!currentCountry || !currentCountry.borders) return; 
         
         console.log(currentCountry.borders)
         const fetchBorderInfo = async (code:string)=> {
@@ -84,8 +85,12 @@ export default function FlagApp () {
 
     return (
         <>
-             <h1>This is a flag app {id} </h1>
-             {!isLoaded  ?<div>now loading</div> : <DisplayFlag currentCountry= {currentCountry} borderCountries={borderCountries} />}
+            
+             <main className="w-full h-[100vh] flex flex-col bg-light-mode-background dark:bg-dark-mode-background">
+                
+{!isLoaded  ?<div>now loading</div> : <DisplayFlag currentCountry= {currentCountry} borderCountries={borderCountries} />}   
+             </main>
+             
         
         
 

@@ -9,7 +9,7 @@ interface Props {
 
 export default function Flag ({name, population, region, flag,alt,capital}:Props) {
     return (
- <div id={name + " flag"} className="  bg-light-mode-background rounded-2xl overflow-hidden "  >
+ <div id={name + " flag"} className="  bg-light-mode-background rounded-2xl overflow-hidden dark:bg-dark-mode-elements"  >
     <div className="aspect-video">
         <img  src={flag} alt={alt} className=" h-full w-full object-cover" />
     </div>
