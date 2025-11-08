@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useParams  } from "react-router-dom"
 import type { Country } from "./types/Country"
 import DisplayFlag from './components/DisplayFlag'
+import Loading from "./components/Loading"
 
 
 export default function FlagApp () {
@@ -86,9 +87,9 @@ export default function FlagApp () {
     return (
         <>
             
-             <main className="w-full h-[100vh] flex flex-col bg-light-mode-background dark:bg-dark-mode-background">
+             <main className="w-full  flex flex-col bg-light-mode-background dark:bg-dark-mode-background">
                 
-{!isLoaded  ?<div>now loading</div> : <DisplayFlag currentCountry= {currentCountry} borderCountries={borderCountries} />}   
+{!isLoaded  ?<Loading/> : <DisplayFlag currentCountry= {currentCountry} borderCountries={borderCountries} />}   
              </main>
              
         

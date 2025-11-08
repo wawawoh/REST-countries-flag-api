@@ -2,9 +2,11 @@ import { useState } from "react"
 import './App.css'
 import Filter from './components/Filter.tsx'
 import Search from './components/Search'
-import Header from './components/Header'
+
 import FlagList from './components/FlagList'
-import DisplayFlag from './components/DisplayFlag'
+
+import type { Country } from "./types/Country.ts"
+
 
 
 
@@ -13,7 +15,7 @@ function App() {
   
   const [search, setSearch] = useState("")
    const [region, setRegion] = useState("")
-   const [displayInfo, setDisplayInfo] = useState("")
+   
    const [data, setData] = useState<Country[]>([])
 
   
@@ -29,7 +31,7 @@ function App() {
       
       
       <div id="flag" className="">
-    <FlagList search = {search} region = {region} setDisplayInfo = {setDisplayInfo} data={data} setData={setData} />
+    <FlagList search = {search} region = {region}  data={data} setData={setData} />
       </div>
       
     </main>

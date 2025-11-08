@@ -30,15 +30,15 @@ export default function Flag ({currentCountry, borderCountries}:props) {
 }
  return (
     
-        
+       
 <div className="mx-8 flex flex-col">
-    <Link to={"/"}>
-         <button className="px-4 py-2 shadow-2xl border-gray-400 border-1 "> ← Back</button>
+    <Link className="w-fit" to={"/"}>
+         <button className="px-4 py-2 shadow-lg  w-fit"> ← Back</button>
         </Link>
 
         
        
-            <div id="country-info" className="flex flex-col lg:items-center  px-16 lg:flex-row lg:justify-around lg:px-0 lg:max-h-[70%]  ">
+            <div id="country-info" className="flex flex-col lg:items-center  px-4 lg:flex-row lg:justify-around lg:px-0 lg:max-h-[70%]  ">
                 <div id="flag" className="aspect-square  lg:max-w-[50%]">
                      <img className="h-full w-full object-contain" src={currentCountry?.flags.svg} alt={currentCountry?.flags.alt} />
                 </div>

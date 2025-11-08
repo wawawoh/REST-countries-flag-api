@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react"
 import type { Country } from "../types/Country"
 import Flag from "./Flag"
 import { Link } from "react-router-dom"
+import Loading from "./Loading"
 
 
 interface Props {
@@ -55,8 +56,8 @@ useEffect(()=> {
 
     return (
          <section>
-           <p> {isLoaded ? "loaded" : "loading"}</p>
-           <ul className="list-none flex flex-col gap-8 items-center px-8 md:grid md:grid-cols-3 ">
+           {!isLoaded && <Loading/>}
+           <ul className="list-none flex flex-col gap-8 items-center px-8 md:grid lg:grid-cols-4 ">
              {filteredCountries?.map ((item) => {
             return (
                 <Link to={`/FlagApp/${item.cca3}`}>
@@ -74,7 +75,7 @@ useEffect(()=> {
            </ul>
           
 
-    )
+    
            {/* eveery time the state is changed, the whole program runs again aside from the inital useffect of course */}
            
 

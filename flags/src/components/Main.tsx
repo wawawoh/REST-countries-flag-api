@@ -1,10 +1,13 @@
 import { useState } from "react"
 import Header from "./Header"
-import { RouterProvider} from "react-router-dom"
+import { RouterProvider,  type DataRouter} from "react-router-dom"
+
+
+
 
 
 interface props {
-    router: Router ;
+    router: DataRouter;
 }
 
 export default function Main ({router}:props) {
