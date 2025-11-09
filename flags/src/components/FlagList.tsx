@@ -55,13 +55,13 @@ useEffect(()=> {
 },[])
 
     return (
-         <section>
+         <section className= {!isLoaded ? "grid place-items-center" : ""}>
            {!isLoaded && <Loading/>}
-           <ul className="list-none flex flex-col gap-8 items-center px-8 md:grid lg:grid-cols-4 ">
+           <ul className="list-none flex flex-col gap-8 items-center px-8 md:grid lg:grid-cols-4 justify-center mx-auto">
              {filteredCountries?.map ((item) => {
             return (
                 <Link to={`/FlagApp/${item.cca3}`}>
-             <li id={item.name.common} key={item.name.common}  >
+             <li className="m-auto" id={item.name.common} key={item.name.common}  >
                 <Flag  name={item.name.common} population = {item.population} region={item.region} flag={item.flags.svg} alt={item.flags.alt} capital= {item.capital}/>
                 </li>
             </Link>

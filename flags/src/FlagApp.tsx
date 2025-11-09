@@ -87,7 +87,7 @@ export default function FlagApp () {
     return (
         <>
             
-             <main className="w-full  flex flex-col bg-light-mode-background dark:bg-dark-mode-background">
+             <main className="w-full  flex flex-col items-center bg-light-mode-background dark:bg-dark-mode-background">
                 
 {!isLoaded  ?<Loading/> : <DisplayFlag currentCountry= {currentCountry} borderCountries={borderCountries} />}   
              </main>

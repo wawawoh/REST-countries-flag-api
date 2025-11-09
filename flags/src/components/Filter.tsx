@@ -32,7 +32,7 @@ export default function Filter ({region, setRegion}: Props) {
        
         <button onClick={()=> setShowingRegion((prev)=> region ? prev : !prev)} className="bg-light-mode-background self-start p-4 flex justify-between gap-10 dark:bg-dark-mode-elements shadow-lg">
             {region ? <>{region}  </>: "Filter by Region"}
-            <span className={clickedIcon =="V" ?"border-gray-200 border-2 px-2 rounded-sm pointer-events-none" : " border-gray-200 border-2 px-2 rounded-sm"} onClick={()=> regionClicked(clickedIcon)}>{clickedIcon}</span>
+            <span className={!showingRegion ?"border-gray-200 border-2 px-2 rounded-sm pointer-events-auto" : " border-gray-200 border-2 px-2 rounded-sm rotate-180 pointer-events-none"} onClick={()=> regionClicked(clickedIcon)}>{clickedIcon}</span>
 
         </button>
         {showingRegion &&  <div>
