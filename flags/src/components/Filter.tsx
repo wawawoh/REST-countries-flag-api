@@ -25,7 +25,7 @@ export default function Filter ({region, setRegion}: Props) {
     }
 
     return (
-        <div className="relative">
+        <div className="relative lg:self-end lg:mb-4">
 
        
 
